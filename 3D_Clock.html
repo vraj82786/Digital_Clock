@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <title>3D Sphere</title>
+    <style>
+        /* normal styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            background-color: rgba(15, 2, 2, 0.623);
+        }
+
+        /* main styles */
+        .main_container {
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(to left top, #8c0043, #830044, #790044, #700044, #660044, #5d0141, #54023d, #4c0239, #420332, #39032b, #2f0324, #27001d);
+            overflow: hidden;
+            position: relative;
+            display: grid;
+            place-items: center;
+        }
+
+        .sphere {
+            position: absolute;
+            border-radius: 50%;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(238, 156, 4) 2%, rgb(122, 23, 10), rgb(49, 0, 0));
+            box-shadow: .1rem .1rem 2rem 0 rgb(26, 5, 1);
+        }
+
+        .sphere:first-child {
+            top: -5rem;
+            left: -5rem;
+            width: 15vw;
+            height: 15vw;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(255, 251, 0) 2%, rgb(235, 161, 3), rgb(241, 139, 4));
+            box-shadow: .1rem .1rem 2rem 0 rgb(168, 166, 13);
+
+        }
+
+        .sphere:nth-child(2) {
+            top: 30rem;
+            left: 10rem;
+            width: 4.5vw;
+            height: 4.5vw;
+            background-image: radial-gradient(farthest-corner at 1rem 1rem,
+                    rgb(255, 109, 109) 2%, rgb(141, 0, 0), rgba(78, 0, 0, 0.753));
+            box-shadow: .1rem .1rem 2rem 0 rgb(228, 50, 5);
+        }
+
+        .sphere:nth-child(3) {
+            bottom: -10vw;
+            left: 20rem;
+            width: 15vw;
+            height: 15vw;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(87, 134, 236) 2%, rgb(3, 58, 141), rgb(0, 23, 65));
+            box-shadow: .1rem .1rem 2rem 0 rgba(18, 153, 206, 0.63);
+        }
+
+        .sphere:nth-child(4) {
+            top: -25vw;
+            left: 50vw;
+            width: 30vw;
+            height: 30vw;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(255, 51, 0) 2%, rgb(238, 87, 0), rgb(240, 182, 76));
+            box-shadow: .1rem .1rem 2rem 0 rgb(194, 79, 3);
+        }
+
+        .sphere:nth-child(5) {
+
+            bottom: 2vw;
+            right: 25vw;
+            width: 10vw;
+            height: 10vw;
+            background-image: radial-gradient(farthest-corner at 2rem 2rem,
+                    rgb(173, 225, 255) 2%, rgb(9, 114, 146), rgb(0, 71, 38));
+            box-shadow: .1rem .1rem 2rem 0 rgb(60, 102, 96);
+        }
+
+        .sphere:nth-child(6) {
+
+            top: 25vw;
+            right: -10rem;
+            width: 15vw;
+            height: 15vw;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(230, 0, 0) 2%, rgb(245, 78, 56), rgb(255, 55, 55));
+            box-shadow: .1rem .1rem 2rem 0 rgb(253, 32, 2);
+        }
+
+        .sphere:nth-child(7) {
+            top: 7vw;
+            left: 20vw;
+            width: 20vw;
+            height: 20vw;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(171, 248, 155) 2%, rgb(101, 155, 0), rgb(32, 99, 5), rgba(142, 172, 255, 0.911));
+            box-shadow: .1rem .1rem 2rem 0 rgb(60, 78, 58);
+        }
+
+        .sphere:last-child {
+            top: 10vw;
+            right: 5vw;
+            width: 7vw;
+            height: 7vw;
+            background-image: radial-gradient(farthest-corner at 3rem 3rem,
+                    rgb(226, 225, 223) 2%, rgb(107, 107, 107), rgb(24, 24, 24));
+            box-shadow: .1rem .1rem 2rem 0 rgb(119, 116, 116);
+        }
+
+        /* CLOCK style */
+        .clock {
+            width: 50vw;
+            height: 30vh;
+            z-index: 1;
+            border-radius: 2vw 0 2vw 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1 1.5 2;
+            border: .2vw solid #FFD39A;
+
+            background-image: linear-gradient(to left top, #d40066, #bc0062, #a4005d, #8d0056, #76004e, #73014f, #6f0350, #6c0451, #7a085d, #890d69, #971375, #a61882);
+
+        }
+
+        #hrs,
+        #mins,
+        #secs,
+        #period {
+            border-radius: 3vw;
+            font-family: 'Bubblegum Sans', cursive;
+            width: 20%;
+            height: 80%;
+            margin: 0 1vw;
+            font-size: 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF5E1;
+            border: .2vw solid #f3d38c;
+            background-image: linear-gradient(to left bottom, #59002b, #640031, #700036, #7c003c, #880042, #860042, #830042, #810042, #6f003c, #5e0035, #4d002e, #3d0026);
+        }
+
+        @keyframes effect {
+            0% {
+                background-image: linear-gradient(to top left, rgb(48, 0, 0), rgb(99, 0, 0), rgb(78, 1, 1));
+                color: #FFF5E1;
+            }
+
+            100% {
+                background-image: linear-gradient(to top right, rgb(134, 76, 0), rgb(161, 124, 0), rgb(78, 64, 1));
+                color: #3d0026;
+            }
+        }
+
+        @keyframes blink {
+            0% {
+
+                color: #FFF5E1;
+            }
+
+            100% {
+                color: #54023d
+            }
+        }
+
+        @keyframes MoveBack {
+            0% {
+                border-radius: 2vw 0 2vw 0;
+                border-color: #FFD39A;
+            }
+
+            50% {
+                border-radius: 0 2vw 0 2vw;
+                border-color: rgb(177, 204, 255);
+            }
+
+            100% {
+                border-radius: 2vw 0 2vw 0;
+                border-color: rgb(249, 255, 169);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main_container">
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="clock">
+            <div id="hrs"></div>
+            <div id="mins"></div>
+            <div id="secs"></div>
+            <div id="period"></div>
+        </div>
+    </div>
+    <script>
+        const clock = () => {
+            let now = new Date();
+            let hrs = now.getHours();
+            let mins = now.getMinutes();
+            let secs = now.getSeconds();
+            let period = "AM";
+            if (hrs == 0) {
+                hrs = 12;
+            }
+            else if (hrs >= 12) {
+                hrs = hrs - 12;
+                period = "PM";
+            }
+            // 0 prefix for values ...
+            hrs = hrs < 10 ? hrs = "0" + hrs : hrs;
+            mins = mins < 10 ? mins = "0" + mins : mins;
+            secs = secs < 10 ? secs = '0' + secs : secs;
+            //    animation script ...
+            if (secs == 0) {
+                document.getElementById("mins").style.animation = "effect 1s linear";
+                document.getElementsByClassName("clock").style.animation = "MoveBack 2s linear";
+            }
+            if (mins == 0) { document.getElementById("hrs").style.animation = "effect 1s linear"; }
+            document.getElementById("secs").style.animation = "blink 1s linear infinite";
+            //    display time in blocks ...
+            document.getElementById("hrs").innerText = hrs;
+            document.getElementById("mins").innerText = mins;
+            document.getElementById("secs").innerText = secs;
+            document.getElementById("period").innerText = period;
+        }
+        setInterval(clock, 1000);
+    </script>
+</body>
+
+</html>
